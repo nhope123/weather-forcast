@@ -4,13 +4,13 @@ export const CityContext = createContext()
  
 const CityContextProvider= ( props ) => {
 
-    const [city, setCity] = useState()
-    const [currentForcast, setCurrentForcast] = useState('')
+    const [city, setCity] = useState('toronto')
+    const [coordinates, setCoordinates] = useState('')
     const [previousForcast, setPreviousForcast] = useState('')
     return (
         <CityContext.Provider value={ {
             city, setCity, 
-            currentForcast, setCurrentForcast,
+            coordinates, setCoordinates,
             previousForcast, setPreviousForcast
             } } >
             { props.children }

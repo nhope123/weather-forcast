@@ -1,4 +1,5 @@
 import axios from 'axios';
+import dayjs  from 'dayjs';
 
 require( 'dotenv' ).config({path: '../../.env'})
 
@@ -19,14 +20,26 @@ export const fetchCurrent = async ( city  ) =>{
 }
 
 export const fetchPrevious = async ( coordinates, day  ) =>{
-    
-   const response = ( await axios.get( `${ previousURL }${ coordinates.lat }&lon=${ coordinates.lon}&dt=${ calculateDay( day ) }&appid=${ API_Key}`))
-                        
-   return response.data
+   const url = `${ previousURL }${ coordinates.lat }&lon=${ coordinates.lon}&dt=${ calculateDay( day ) }&appid=${ API_Key}`
+   const response = ( await axios.get( url )
+                              //.then( res =>  {return res.data} )
+                              //.catch( err => {return err} )
+                              
+                              )
+   console.log(`response:${response}`);                
+   return response
 }
 
 
 export const calculateDay = ( value ) =>{
-   return ( Date.now() - ( value * 86400 ) )
+
+   /** bug  */
+   
+
+   
+   //dayjs.extend(toObject)
+   const date = dayjs()
+   console.log(`C-Time: ${date.toObject() }, 1-day: 86400, total: ${date - 86400}`);
+   return ( dayjs() - ( value * 86400 ) )
 
 }

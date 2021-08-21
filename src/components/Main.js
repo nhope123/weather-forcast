@@ -5,7 +5,7 @@ import PreviousForcast from './PreviousForcast'
 
 const Main = () => {
 
-    const { city } = useContext( CityContext)
+    const { city, coordinates } = useContext( CityContext)
     
     return (
         < >
@@ -13,7 +13,7 @@ const Main = () => {
                 ( city ) && <CurrentForcast /> 
             }
             {
-                ( city )? (
+                ( coordinates )? (
                     <div >
                     { 'Map the previous weather' }
                         <PreviousForcast />
