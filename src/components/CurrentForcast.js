@@ -1,25 +1,75 @@
-import React, { useContext } from 'react'
-import { useQuery } from 'react-query'
-import { fetchData } from '../assets/helper_functions'
+import dayjs from 'dayjs'
+import React, { useContext, useEffect } from 'react'
+import { Sunrise, Sunset } from 'react-bootstrap-icons'
+import { useQueries, useQuery } from 'react-query'
+import { fetchCurrent, fetchPrevious } from '../assets/helper_functions'
 import { CityContext } from '../context/CityContextProvider'
 
 
-const CurrentForcast = () => {
+const CurrentForcast = ()  => {
     
-    const { city } = useContext( CityContext )
+    const { city, setCurrentForcast  } = useContext( CityContext )
     
-    const {data, error, status } = useQuery( 'weather',()=> fetchData( city))
+    const {data, error, status } = useQuery( 'weather',()=> fetchCurrent( city))
     
-    console.log( status );
-    console.log( data);
-    console.log('help');
-    return (
-        <div>
-            <div >
-                <h2 >{ city }</h2>
-            </div>
+    useEffect(() => {
+        setCurrentForcast( data )
+        //console.log(`sunrise${dayjs.unix( data.sys.sunrise)}`);
+    }, [ data ])
 
-        </div>
+  
+
+    return (
+        < >
+            {
+                (data ) && (
+                    <div>
+
+                        {/* Location */}
+                        <div >
+                            <h2 >{ `${ data.name }, ${ data.sys.country}`}</h2>
+                        </div>
+
+                        {/* Temperature */}
+                        <div >
+                            <h1 >{`${ Math.floor(data.main.temp)}°C` }</h1>
+                            <div >
+                                <img src={ `http://openweathermap.org/img/wn/${ data.weather[0].icon}@2x.png`}
+                                     alt={ data.weather[0].description } />
+                                <div >{ data.weather[0].main }</div>
+                            </div>
+                        </div>
+                        
+                        <div >
+
+                            {/* Status */}
+                            <div >
+                                <Sunrise />
+                                <div >{ dayjs.unix( data.sys.sunrise).format('h:mm a')  }</div>
+                            </div>
+                            <div >
+                                <Sunset />
+                                <div >{ dayjs.unix( data.sys.sunset).format('h:mm a')  }</div>
+                            </div>
+
+                            {/* feels like */}
+                            <div >
+                                <div >{'Feels like' }</div>
+                                <div >{ `${Math.floor(data.main.feels_like)}°C` }</div>
+                            </div>
+
+                            {/* High and low */}
+                            <div >{ `${Math.floor(data.main.temp_min)}°C / ${Math.floor(data.main.temp_max)}°C`}                            
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                )
+            }
+            
+        </ >
     )
 }
 

@@ -6,7 +6,7 @@ import PreviousForcast from './PreviousForcast'
 const Main = () => {
 
     const { city } = useContext( CityContext)
-
+    
     return (
         < >
             {
