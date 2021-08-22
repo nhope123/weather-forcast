@@ -14,7 +14,8 @@ const Main = () => {
                 <>
                      <CurrentForcast /> 
 
-                    <div className={`${ defaultClassname } flex-row flex-wrap justify-content-center align-items-center `} >
+                    <div className={`${ defaultClassname } flex-row flex-wrap justify-content-center align-items-center `} 
+                         role={'region'} aria-label={'5 day forcast history'} >
                         {
                            previousForcast.map( forcast =>{
                                
@@ -24,8 +25,8 @@ const Main = () => {
                     </div>
                 </>): 
                 
-                <div className={'welcome'} >                    
-                    <h2 >{ `${ ( isFirstLoad )? 'Welcome' : 'Loading.........' }` }</h2>
+                <div className={'welcome'} role={'alert'} aria-labelledby={'stand in'}  >                    
+                    <h2 id={'stand in'} >{ `${ ( isFirstLoad )? 'Welcome' : 'Loading.........' }` }</h2>
                 </div>
             }
         </ >

@@ -1,5 +1,6 @@
 import React from 'react'
 import { defaultClassname } from './assets/helper_functions'
+import Header from './components/Header'
 import LocationInput from './components/LocationInput'
 import Main from './components/Main'
 import CityContextProvider from './context/CityContextProvider'
@@ -12,12 +13,9 @@ const App = () => {
     < WeatherQueryClient >
       <CityContextProvider >
 
-        <div className={ `${ defaultClassname } flex-column justify-content-start align-items-center py-5 px-3 bg-purple vw-100 min-vh-100` } >
-          <h1 className={ 'mb-4 fw-bold '} >
-            <a href={ 'https://github.com/nhope123/weather-forcast' } tabIndex={ '0' } target={'_top'} title={'Go to Repository'} >
-              {"Weather Forcast"}
-            </a>
-          </h1 >
+        <div className={ `${ defaultClassname } flex-column justify-content-start align-items-center py-5 px-3 bg-purple vw-100 min-vh-100 ` } 
+             role={'main'} aria-labelledby={'title'}>
+          <Header />
           <LocationInput />
           <Main />
         </div>        

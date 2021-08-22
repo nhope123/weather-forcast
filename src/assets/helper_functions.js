@@ -32,8 +32,8 @@ export const processForcastHistory = data => {
    return (
       {
          temp: `${ Math.round( data.current.temp )}°C`,
-         main: data.current.weather.main,
-         desc: data.current.weather.description,
+         main: data.current.weather[0].main,
+         desc: data.current.weather[0].description,
          icon: `http://openweathermap.org/img/wn/${ data.current.weather[0].icon }@2x.png`,
          date: `${dayjs.unix( data.current.dt ).format('ddd D')}`,
          key: data.current.dt          

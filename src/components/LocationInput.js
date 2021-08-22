@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { CityContext } from '../context/CityContextProvider'
 import { Search } from 'react-bootstrap-icons'
 
@@ -15,13 +15,14 @@ const LocationInput = () => {
         setlocation( '' )
         
     }
-    
+
     return (
-        <div className={ 'position-relative d-block mb-5 ' } >
-            <form onSubmit={ submitlocation } >
+        <div className={ 'position-relative d-block pb-5  px-sm-5 pt-2' } role={'search'} >
+            <form onSubmit={ submitlocation } aria-label={'Search city weaather forcast '} >
                 <input type={ 'search' } tabIndex={ '0' } value={location} required
                        aria-placeholder={ placeholderText } placeholder={ placeholderText}
-                       onChange={ event => setlocation( event.target.value)}  />
+                       onChange={ event => setlocation( event.target.value)} 
+                       aria-label={'Search for the city'} />
                 <button title={ 'Submit '} type={ 'submit' } tabIndex={ '0' } 
                         disabled={ (location.length < 1)} >
                     <Search />

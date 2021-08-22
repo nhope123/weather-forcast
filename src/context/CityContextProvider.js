@@ -3,6 +3,7 @@ import { useQueries, useQuery } from 'react-query'
 import { fetchCurrentForcast, fetchHistoryForcast, processForcastHistory, processLocalForcast } from '../assets/helper_functions'
 
 export const CityContext = createContext()
+const cacheValue = 3600000 // 1hr
  
 const CityContextProvider= ( props ) => {
 
@@ -13,13 +14,15 @@ const CityContextProvider= ( props ) => {
     const [isFirstLoad, setIsFirstLoad] = useState( true )
 
     const getForcastHistory = anObject =>{
+
         if(previousForcast.length < 1 ) { setPreviousForcast( [ processForcastHistory( anObject ) ] ) }
         else if( previousForcast.length < 4 ) { setPreviousForcast( [ ...previousForcast, processForcastHistory( anObject )  ] ) }
         else if( previousForcast.length === 4 ){
             setPreviousForcast( [ ...previousForcast, processForcastHistory( anObject ) ].sort((a,b)=> a.key - b.key) )
             setCoordinates('')
             setIsFirstLoad( false )
-        }        
+        }    
+        console.log((anObject));    
     }
 
     const getLocalForcast = anObject =>{
@@ -33,23 +36,22 @@ const CityContextProvider= ( props ) => {
 
     useQuery( 'weather',()=> fetchCurrentForcast( city), { 
         onSuccess: data=> getLocalForcast( data ),
-        cacheTime: Infinity,
+        cacheTime: cacheValue,
         enabled: (city.length > 0),    
     })
 
-    useQueries([
-        { queryKey: [ 'day', 1], queryFn: ()=> fetchHistoryForcast(coordinates, 1 ), onSuccess: data => getForcastHistory( data ), retry: 1, enabled: ( typeof coordinates  === 'object' ) },
-        { queryKey: [ 'day', 2], queryFn: ()=> fetchHistoryForcast(coordinates, 2 ), onSuccess: data => getForcastHistory( data ), retry: 1, enabled: ( typeof coordinates  === 'object' ) },
-        { queryKey: [ 'day', 3], queryFn: ()=> fetchHistoryForcast(coordinates, 3 ), onSuccess: data => getForcastHistory( data ), retry: 1, enabled: ( typeof coordinates  === 'object' ) },
-        { queryKey: [ 'day', 4], queryFn: ()=> fetchHistoryForcast(coordinates, 4 ), onSuccess: data => getForcastHistory( data ), retry: 1, enabled: ( typeof coordinates  === 'object' ) },
-        { queryKey: [ 'day', 5], queryFn: ()=> fetchHistoryForcast(coordinates, 5 ), onSuccess: data => getForcastHistory( data ), retry: 1, enabled: ( typeof coordinates  === 'object' ) },
-        
-    ])
-
-
-
-
-
+    useQueries(
+        [1,2,3,4,5].map( day =>{
+            return {
+                queryKey: [ 'day', day ],
+                queryFn: ()=> fetchHistoryForcast(coordinates, day ),
+                onSuccess: data => getForcastHistory( data ),
+                retry: 1, 
+                cacheTime: cacheValue,
+                enabled: ( typeof coordinates  === 'object' )
+            }
+        } )
+    )
 
     return (
         <CityContext.Provider value={ {
