@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { defaultClassname, processForcast } from '../assets/helper_functions'
 import { CityContext } from '../context/CityContextProvider'
 import CurrentForcast from './CurrentForcast'
@@ -9,6 +9,7 @@ const Main = () => {
 
     const { city, coordinates, previousForcast } = useContext( CityContext)
     
+    useEffect(() => {   }, [city, coordinates, previousForcast ])
     return (
         < >
             {   ( city ) && <CurrentForcast />  }

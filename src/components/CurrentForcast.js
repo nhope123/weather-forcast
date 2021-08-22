@@ -1,5 +1,5 @@
 import dayjs from 'dayjs'
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useQuery } from 'react-query'
 import { defaultClassname, fetchCurrent, rowBetween } from '../assets/helper_functions'
 import { CityContext } from '../context/CityContextProvider'
@@ -9,9 +9,20 @@ import Daylight from './Daylight'
 
 const CurrentForcast = ()  => {
     
-    const { city, getCoordinates ,previousForcast } = useContext( CityContext )
+    const { city, coordinates, getCoordinates ,previousForcast } = useContext( CityContext )
+
+    const { data } = useQuery( 'weather',()=> fetchCurrent( city), { 
+                                                                        onSuccess: data=> getCoordinates( data.coord),
+                                                                        cacheTime: Infinity,
+                                                                        notifyOnChangeProps:
+                                                                    
+                                                                    })
+
+    useEffect(() => {
+        //console.log(`city: ${ city}, coordinates: ${JSON.stringify(coordinates)}`);
+    }, [city, getCoordinates, previousForcast, coordinates, data])
     
-    const { data } = useQuery( 'weather',()=> fetchCurrent( city), { onSuccess: data=> getCoordinates( data.coord), cacheTime: Infinity})
+    
         
     return (
         < >

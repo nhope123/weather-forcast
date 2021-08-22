@@ -14,6 +14,7 @@ const previousURL = 'https://api.openweathermap.org/data/2.5/onecall/timemachine
 
 export const fetchCurrent = async ( city  ) =>{
     
+   console.log(`fetchcurrent: ${city}`);
    const response = ( await axios.get( `${ currentURL }${ city }&units=metric&appid=${API_Key}`))
                         
    return response.data

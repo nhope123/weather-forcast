@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { defaultClassname } from '../assets/helper_functions'
 import { CityContext } from '../context/CityContextProvider'
 
@@ -6,6 +6,7 @@ const PreviousForcast = ( props ) => {
 
    const { previousForcast } = useContext( CityContext )
 
+    useEffect(() => { }, [previousForcast])
     return (
         < >
             {
