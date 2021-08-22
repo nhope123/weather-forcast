@@ -18,10 +18,10 @@ const LocationInput = () => {
     return (
         <div className={ 'position-relative d-block mb-5 ' } >
             <form onSubmit={ submitlocation } >
-                <input type={ 'search' } tabIndex={ '0' } value={location} 
+                <input type={ 'search' } tabIndex={ '0' } value={location} required
                        required aria-placeholder={ placeholderText } placeholder={ placeholderText}
                        onChange={ event => setlocation( event.target.value)} />
-                <button className={ 'px-2 search-button '}
+                <button className={ 'px-2 search-button '} title={ 'Submit '}
                         type={ 'submit' } tabIndex={ '0' } disabled={ (location.length < 1)} >
                     <Search />
                 </button>

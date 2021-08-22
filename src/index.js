@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './styles/index.scss'
 
-require( 'dotenv' ).config({path: '../env'})
+
 
 ReactDOM.render(
   <React.StrictMode>
