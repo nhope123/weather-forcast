@@ -57,7 +57,7 @@ const CityContextProvider= ( props ) => {
                 coordinates, getLocalForcast,
                 currentForcast, setCurrentForcast,
                 previousForcast, getForcastHistory,
-                isFirstLoad
+                isFirstLoad, setIsFirstLoad
             } } >
             { props.children }
         </CityContext.Provider>

@@ -15,14 +15,13 @@ const LocationInput = () => {
         setlocation( '' )
         
     }
-
-    useEffect(() => {   }, [setCity])
+    
     return (
         <div className={ 'position-relative d-block mb-5 ' } >
             <form onSubmit={ submitlocation } >
                 <input type={ 'search' } tabIndex={ '0' } value={location} required
                        aria-placeholder={ placeholderText } placeholder={ placeholderText}
-                       onChange={ event => setlocation( event.target.value)} />
+                       onChange={ event => setlocation( event.target.value)}  />
                 <button title={ 'Submit '} type={ 'submit' } tabIndex={ '0' } 
                         disabled={ (location.length < 1)} >
                     <Search />
