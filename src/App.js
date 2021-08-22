@@ -13,7 +13,11 @@ const App = () => {
       <CityContextProvider >
 
         <div className={ `${ defaultClassname } flex-column justify-content-start align-items-center py-5 px-3 bg-purple vw-100 min-vh-100` } >
-          <h1 className={ 'mb-4 fw-bold '} >{"Weather Forcast"}</h1 >
+          <h1 className={ 'mb-4 fw-bold '} >
+            <a href={ 'https://github.com/nhope123/weather-forcast' } tabIndex={ '0' } target={'_top'} title={'Go to Repository'} >
+              {"Weather Forcast"}
+            </a>
+          </h1 >
           <LocationInput />
           <Main />
         </div>        

@@ -4,7 +4,10 @@
     -moz-box-shadow: $values;
 }
 
-
+[title='Go to Repository']{
+    text-decoration: none;
+    color: black;
+}
 
 .current-temp{
     font-size: 3.3rem ;
