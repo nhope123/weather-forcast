@@ -23,8 +23,8 @@ const LocationInput = () => {
                 <input type={ 'search' } tabIndex={ '0' } value={location} required
                        aria-placeholder={ placeholderText } placeholder={ placeholderText}
                        onChange={ event => setlocation( event.target.value)} />
-                <button className={ 'px-2 search-button '} title={ 'Submit '}
-                        type={ 'submit' } tabIndex={ '0' } disabled={ (location.length < 1)} >
+                <button title={ 'Submit '} type={ 'submit' } tabIndex={ '0' } 
+                        disabled={ (location.length < 1)} >
                     <Search />
                 </button>
             </form>

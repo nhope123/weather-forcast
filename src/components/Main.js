@@ -1,34 +1,32 @@
-import React, { useContext, useEffect } from 'react'
-import { defaultClassname, processForcast } from '../assets/helper_functions'
+import React, { useContext } from 'react'
+import { defaultClassname} from '../assets/helper_functions'
 import { CityContext } from '../context/CityContextProvider'
 import CurrentForcast from './CurrentForcast'
-import NullComponent from './NullComponent'
 import PreviousForcast from './PreviousForcast'
 
 const Main = () => {
 
-    const { city, coordinates, previousForcast } = useContext( CityContext)
+    const { previousForcast, isFirstLoad } = useContext( CityContext)
     
-    useEffect(() => {   }, [city, coordinates, previousForcast ])
     return (
         < >
-            {   ( city ) && <CurrentForcast />  }
-            
-            {   ( coordinates ) && <NullComponent />  }
+            {   (previousForcast.length === 5)? (
+                <>
+                     <CurrentForcast /> 
 
-            {
-                ( coordinates )? (
                     <div className={`${ defaultClassname } flex-row flex-wrap justify-content-center align-items-center `} >
                         {
-                           (previousForcast.length > 0) &&  previousForcast.map( forcast =>{
+                           previousForcast.map( forcast =>{
                                
-                               return <PreviousForcast key={forcast.current.dt} { ...processForcast( forcast) } />
+                               return <PreviousForcast key={forcast.key} { ...forcast } />
                             })
                         }
                     </div>
-                ):  <div className={'welcome'} >
-                    <h2 >{ 'Welcome ' }</h2>
-                    </div>
+                </>): 
+                
+                <div className={'welcome'} >                    
+                    <h2 >{ `${ ( isFirstLoad )? 'Welcome' : 'Loading.........' }` }</h2>
+                </div>
             }
         </ >
     )
