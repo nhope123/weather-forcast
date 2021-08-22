@@ -2,11 +2,14 @@
 import axios from 'axios';
 import dayjs  from 'dayjs';
 
-require( 'dotenv' ).config({path: '../../.env'})
+
+
+export const defaultClassname = 'position-relative d-flex '
+export const rowBetween = 'flex-row justify-content-between'
 
 const API_Key = '72b9218524d32ec84297f8d1c555ef67';
 
-//console.log( `key ${API_Key}`);
+console.log( `key ${ JSON.stringify(process.env) }`);
 
 const currentURL = 'https://api.openweathermap.org/data/2.5/weather?q=' //{city name}&appid={API key}
 const previousURL = 'https://api.openweathermap.org/data/2.5/onecall/timemachine?units=metric&lat='

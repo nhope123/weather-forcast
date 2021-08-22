@@ -1,13 +1,8 @@
 import React, { useContext, useState } from 'react'
 import { CityContext } from '../context/CityContextProvider'
 import { Search } from 'react-bootstrap-icons'
-import { debounce } from '../assets/helper_functions'
 
 const placeholderText = 'Enter city name'
-/**
- * Form for user location input
- * @returns 
- */
 
 const LocationInput = () => {
     const [location, setlocation] = useState( '' )
@@ -21,7 +16,7 @@ const LocationInput = () => {
         
     }
     return (
-        <div className={ 'd-block mb-5 position-relative' } >
+        <div className={ 'position-relative d-block mb-5 ' } >
             <form onSubmit={ submitlocation } >
                 <input type={ 'search' } tabIndex={ '0' } value={location} 
                        required aria-placeholder={ placeholderText } placeholder={ placeholderText}
