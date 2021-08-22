@@ -11,8 +11,8 @@ const App = () => {
     < WeatherQueryClient >
       <CityContextProvider >
 
-        <div className={ 'd-flex flex-column justify-content-start align-items-center py-5 px-3 border border-primary vw-100 vh-100' } >
-          <h1 className={ 'mb-4 '} >{"Weather Forcast"}</h1 >
+        <div className={ 'd-flex flex-column justify-content-start align-items-center py-5 px-3 bg-purple vw-100 min-vh-100' } >
+          <h1 className={ 'mb-4 fw-bold '} >{"Weather Forcast"}</h1 >
           <LocationInput />
           <Main />
         </div>        
