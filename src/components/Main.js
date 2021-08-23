@@ -1,25 +1,25 @@
 import React, { useContext } from 'react'
 import { defaultClassname} from '../assets/helper_functions'
 import { CityContext } from '../context/CityContextProvider'
-import CurrentForcast from './CurrentForcast'
-import PreviousForcast from './PreviousForcast'
+import CurrentForecast from './CurrentForecast'
+import PreviousForecast from './PreviousForecast'
 
 const Main = () => {
 
-    const { previousForcast, isFirstLoad } = useContext( CityContext)
+    const { previousForecast, isFirstLoad } = useContext( CityContext)
     
     return (
         < >
-            {   (previousForcast.length === 5)? (
+            {   (previousForecast.length === 5)? (
                 <>
-                     <CurrentForcast /> 
+                     <CurrentForecast /> 
 
                     <div className={`${ defaultClassname } flex-row flex-wrap justify-content-center align-items-center `} 
-                         role={'region'} aria-label={'5 day forcast history'} >
+                         role={'region'} aria-label={'5 day forecast history'} >
                         {
-                           previousForcast.map( forcast =>{
+                           previousForecast.map( forecast =>{
                                
-                               return <PreviousForcast key={forcast.key} { ...forcast } />
+                               return <PreviousForecast key={forecast.key} { ...forecast } />
                             })
                         }
                     </div>

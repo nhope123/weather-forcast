@@ -2,18 +2,18 @@ import React, { useContext } from 'react'
 import { defaultClassname } from '../assets/helper_functions'
 import { CityContext } from '../context/CityContextProvider'
 
-const PreviousForcast = ( props ) => {
+const PreviousForecast = ( props ) => {
 
-   const { previousForcast } = useContext( CityContext )
+   const { previousForecast } = useContext( CityContext )
     return (
         < >
             {
-                (previousForcast.length >= 5 ) && (
+                (previousForecast.length >= 5 ) && (
                     <div className={ `${ defaultClassname } flex-column justify-content-center align-items-center my-2 ` }
-                         title={`${ props.date } weather forcast`}>
+                         title={`${ props.date } weather forecast`}>
 
                         {/* date / day */}
-                        <h3 id={ 'forcast-date'} >{ props.date }</h3>
+                        <h3 id={ 'forecast-date'} >{ props.date }</h3>
 
                         {/* Temperature */}
                         <div >{ props.temp }</div>
@@ -34,4 +34,4 @@ const PreviousForcast = ( props ) => {
     )
 }
 
-export default PreviousForcast
+export default PreviousForecast

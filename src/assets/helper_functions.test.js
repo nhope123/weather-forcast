@@ -1,17 +1,17 @@
 const helper_functions = require("./helper_functions")
 
-/** prcessForcasthistory */
+/** prcessForecasthistory */
 // @ponicode
-describe("helper_functions.processForcastHistory", () => {
+describe("helper_functions.processForecastHistory", () => {
     test("Complete data Should return formated object", () => {
         let object = [{ description: "Looking for collector with description ", icon: "https://cdn.fakercloud.com/avatars/akmalfikri_128.jpg", main: "pdf" }]
-        let result = helper_functions.processForcastHistory({ current: { temp: "23", weather: object, dt: "1629718177" } })
+        let result = helper_functions.processForecastHistory({ current: { temp: "23", weather: object, dt: "1629718177" } })
         expect(result).toEqual({ temp: "23°C", main: "pdf", desc: "Looking for collector with description ", icon: "http://openweathermap.org/img/wn/https://cdn.fakercloud.com/avatars/akmalfikri_128.jpg@2x.png", date: "Mon 23", key: "1629718177" })
     })
 
     test("No data should throw error", () => {
         let callFunction = () => {
-            helper_functions.processForcastHistory(undefined)
+            helper_functions.processForecastHistory(undefined)
         }
     
         expect(callFunction).toThrow("Cannot read property 'current' of undefined")
@@ -19,7 +19,7 @@ describe("helper_functions.processForcastHistory", () => {
 
     test("Missing data should throw error", () => {
         let callFunction = () => {
-            helper_functions.processForcastHistory({ current: { temp: "", weather: [], dt: "" } })
+            helper_functions.processForecastHistory({ current: { temp: "", weather: [], dt: "" } })
         }
     
         expect(callFunction).toThrow("Cannot read property 'main' of undefined")
@@ -27,10 +27,10 @@ describe("helper_functions.processForcastHistory", () => {
 })
 
 // @ponicode
-describe("helper_functions.processLocalForcast", () => {
+describe("helper_functions.processLocalForecast", () => {
     test("Missing data should throw error", () => {
         let callFunction = () => {
-            helper_functions.processLocalForcast({ weather: [], main: {}, dt: "", sys: {}, name: "" })
+            helper_functions.processLocalForecast({ weather: [], main: {}, dt: "", sys: {}, name: "" })
         }
     
         expect(callFunction).toThrow()
@@ -38,13 +38,13 @@ describe("helper_functions.processLocalForcast", () => {
 
     test("No data should throw error", () => {
         let object = [{ main: "m2v", icon: "https://cdn.fakercloud.com/avatars/akmalfikri_128.jpg", description: "This is group1" }]
-        let result = helper_functions.processLocalForcast({ weather: object, main: { temp_min: 21, temp: 19, temp_max: 30, feels_like: "Edmond" }, dt: 1587927737, sys: { sunrise: 15712999, sunset: 1539137, country: "China" }, name: "Edmond" })
+        let result = helper_functions.processLocalForecast({ weather: object, main: { temp_min: 21, temp: 19, temp_max: 30, feels_like: "Edmond" }, dt: 1587927737, sys: { sunrise: 15712999, sunset: 1539137, country: "China" }, name: "Edmond" })
         expect(result).toEqual({ name: "Edmond", country: "China", date: "Sun, Apr 26, 3:17pm", temp: "19°C", icon: "http://openweathermap.org/img/wn/https://cdn.fakercloud.com/avatars/akmalfikri_128.jpg@2x.png", desc: "This is group1", main: "m2v", sunrise: 15712999, sunset: 1539137, feel: "NaN°C", temp_min: "21°C", temp_max: "30°C" })
     })
 
     test("Complete data Should return formated object", () => {
         let callFunction = () => {
-            helper_functions.processLocalForcast({})
+            helper_functions.processLocalForecast({})
         }
     
         expect(callFunction).toThrow()

@@ -2,7 +2,7 @@ import dayjs from 'dayjs'
 import React from 'react'
 import { Sunrise, Sunset } from 'react-bootstrap-icons'
 import { defaultClassname } from '../assets/helper_functions'
-import { padding } from './CurrentForcast'
+import { padding } from './CurrentForecast'
 
 const fontSize = 'fs-1'
 

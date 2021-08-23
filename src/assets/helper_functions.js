@@ -12,21 +12,21 @@ const currentURL = 'https://api.openweathermap.org/data/2.5/weather?q='
 const previousURL = 'https://api.openweathermap.org/data/2.5/onecall/timemachine?units=metric&lat='
 
 
-export const fetchCurrentForcast = async ( city  ) =>{
+export const fetchCurrentForecast = async ( city  ) =>{
     
    const response = ( await axios.get( `${ currentURL }${ city }&units=metric&appid=${API_Key}`))
                        
    return response.data
 }
 
-export const fetchHistoryForcast = async ( coordinates, day  ) =>{
+export const fetchHistoryForecast = async ( coordinates, day  ) =>{
    const url = `${ previousURL }${ coordinates.lat }&lon=${ coordinates.lon}&dt=${ calculateDay( day ) }&appid=${API_Key}`
   
    const response = ( await axios.get( url ) )              
    return response.data
 }
 
-export const processForcastHistory = data => {
+export const processForecastHistory = data => {
 
    return (
       {
@@ -40,7 +40,7 @@ export const processForcastHistory = data => {
    );      
 }
 
-export const processLocalForcast = data => {
+export const processLocalForecast = data => {
 
    return (
       {

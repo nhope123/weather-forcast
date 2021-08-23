@@ -1,4 +1,4 @@
-.skip.txt
+*.txt
 # Logs
 logs
 *.log

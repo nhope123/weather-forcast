@@ -18,7 +18,7 @@ const LocationInput = () => {
 
     return (
         <div className={ 'position-relative d-block pb-5  px-sm-5 pt-2' } role={'search'} >
-            <form onSubmit={ submitlocation } aria-label={'Search city weaather forcast '} >
+            <form onSubmit={ submitlocation } aria-label={'Search city weaather forecast '} >
                 <input type={ 'search' } tabIndex={ '0' } value={location} required
                        aria-placeholder={ placeholderText } placeholder={ placeholderText}
                        onChange={ event => setlocation( event.target.value)} 

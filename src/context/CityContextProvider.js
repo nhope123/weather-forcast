@@ -1,6 +1,6 @@
 import React, { createContext, useState } from 'react'
 import { useQueries, useQuery } from 'react-query'
-import { fetchCurrentForcast, fetchHistoryForcast, processForcastHistory, processLocalForcast } from '../assets/helper_functions'
+import { fetchCurrentForecast, fetchHistoryForecast, processForecastHistory, processLocalForecast } from '../assets/helper_functions'
 import { useAlert } from 'react-alert'
 
 
@@ -11,35 +11,35 @@ const CityContextProvider= ( props ) => {
 
     const [city, setCity] = useState('')
     const [coordinates, setCoordinates] = useState('')
-    const [previousForcast, setPreviousForcast] = useState([])
-    const [currentForcast, setCurrentForcast] = useState('')
+    const [previousForecast, setPreviousForecast] = useState([])
+    const [currentForecast, setCurrentForecast] = useState('')
     const [isFirstLoad, setIsFirstLoad] = useState( true )
 
     const alert = useAlert()
 
-    const getForcastHistory = anObject =>{
+    const getForecastHistory = anObject =>{
 
-        if(previousForcast.length < 1 ) { setPreviousForcast( [ processForcastHistory( anObject ) ] ) }
-        else if( previousForcast.length < 4 ) { setPreviousForcast( [ ...previousForcast, processForcastHistory( anObject )  ] ) }
-        else if( previousForcast.length === 4 ){
-            setPreviousForcast( [ ...previousForcast, processForcastHistory( anObject ) ].sort((a,b)=> a.key - b.key) )
+        if(previousForecast.length < 1 ) { setPreviousForecast( [ processForecastHistory( anObject ) ] ) }
+        else if( previousForecast.length < 4 ) { setPreviousForecast( [ ...previousForecast, processForecastHistory( anObject )  ] ) }
+        else if( previousForecast.length === 4 ){
+            setPreviousForecast( [ ...previousForecast, processForecastHistory( anObject ) ].sort((a,b)=> a.key - b.key) )
             setCoordinates('')
             setIsFirstLoad( false )
         }    
             
     }
 
-    const getLocalForcast = anObject =>{
+    const getLocalForecast = anObject =>{
         
         setCoordinates( anObject.coord)
-        setCurrentForcast( processLocalForcast( anObject ))
-        setPreviousForcast([])
+        setCurrentForecast( processLocalForecast( anObject ))
+        setPreviousForecast([])
         setCity( '' )
         
     } 
 
-    useQuery( 'weather',()=> fetchCurrentForcast( city), { 
-        onSuccess: data=> getLocalForcast( data ),
+    useQuery( 'weather',()=> fetchCurrentForecast( city), { 
+        onSuccess: data=> getLocalForecast( data ),
         onError: data => {
                             alert.error(data.response.data.message)
                             setCity('')
@@ -53,8 +53,8 @@ const CityContextProvider= ( props ) => {
             const date = (day === 1)? '1st': (day === 2)? '2nd' : (day + 'th')
             return {
                 queryKey: [ 'day', day ],
-                queryFn: ()=> fetchHistoryForcast(coordinates, day ),
-                onSuccess: data => getForcastHistory( data ),
+                queryFn: ()=> fetchHistoryForecast(coordinates, day ),
+                onSuccess: data => getForecastHistory( data ),
                 onError: data => {
                                     alert.error(`${ date } day: ${data.response.data.message}`)
                                     setCity('')
@@ -69,9 +69,9 @@ const CityContextProvider= ( props ) => {
     return (
         <CityContext.Provider value={ {
                 city, setCity, 
-                coordinates, getLocalForcast,
-                currentForcast, setCurrentForcast,
-                previousForcast, getForcastHistory,
+                coordinates, getLocalForecast,
+                currentForecast, setCurrentForecast,
+                previousForecast, getForecastHistory,
                 isFirstLoad, setIsFirstLoad
             } } >
             { props.children }

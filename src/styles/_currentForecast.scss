@@ -59,21 +59,21 @@
     padding: 2px 6px;
 }
 
-#forcast-date{
+#forecast-date{
     font-size: 1rem;
 }
 
 .welcome{
     margin-top: 20vh;
 }
-.current-forcast{
+.current-forecast{
     padding: 20px;
     border-radius: 20px;
     @include Box-Shadow( 1px 1px 6px rgba(54, 46, 97, 0.7) );
 }
 
 @media screen and (min-width: 576px ) {
-    .current-forcast{
+    .current-forecast{
         box-shadow: none ;
     }
 }
