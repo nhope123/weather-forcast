@@ -26,7 +26,9 @@ const Main = () => {
                 </>): 
                 
                 <div className={'welcome'} role={'alert'} aria-labelledby={'stand in'}  >                    
-                    <h2 id={'stand in'} >{ `${ ( isFirstLoad )? 'Welcome' : 'Loading.........' }` }</h2>
+                    <h2 id={'stand in'} >
+                        { `${ ( isFirstLoad )? 'Welcome' : 'Loading.........' }` }
+                    </h2>
                 </div>
             }
         </ >
