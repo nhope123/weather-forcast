@@ -16,7 +16,7 @@ const PreviousForecast = ( props ) => {
                         <h3 id={ 'forecast-date'} >{ props.date }</h3>
 
                         {/* Temperature */}
-                        <div >{ props.temp }</div>
+                        <div data-testid={`day${props.test + 1}`} >{ props.temp }</div>
 
                         {/* description */}
                         <div className={`${ defaultClassname } flex-column justify-content-center align-items-center ` } 

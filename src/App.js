@@ -8,7 +8,7 @@ import WeatherQueryClient from './context/WeatherQueryClient'
 import { Provider as AlertProvider } from 'react-alert'
 import AlertTemplate from './components/AlertTemplate'
 
-const options = {
+export const alertOptions = {
   offset: '15px',
   position: 'top center',
   timeout: 4000,
@@ -17,7 +17,7 @@ const options = {
 
 const App = () => {
   return (
-    <AlertProvider template={AlertTemplate} {...options}  >
+    <AlertProvider template={AlertTemplate} {...alertOptions}  >
       < WeatherQueryClient >
         <CityContextProvider >
 

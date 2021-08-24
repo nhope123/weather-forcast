@@ -22,7 +22,8 @@ const CurrentForecast = ()  => {
             {/* Temperature */}
             <div className={ `${ defaultClassname } ${ rowBetween } align-items-center pb-3 px-4`} 
                  role={'region'} aria-label={'current temperture'} >
-                <h2 className={'current-temp m-0 align-middle  fw-bold'} title={'current temperature'} >{ currentForecast.temp }</h2>
+                <h2 className={'current-temp m-0 align-middle  fw-bold'} title={'current temperature'} 
+                    data-testid={'current temp'}>{ currentForecast.temp }</h2>
                 <div className={`${ defaultClassname } flex-column justify-content-center `}
                      title={currentForecast.desc} >
                     <img src={ currentForecast.icon }

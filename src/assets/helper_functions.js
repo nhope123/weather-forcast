@@ -15,14 +15,15 @@ const previousURL = 'https://api.openweathermap.org/data/2.5/onecall/timemachine
 export const fetchCurrentForecast = async ( city  ) =>{
     
    const response = ( await axios.get( `${ currentURL }${ city }&units=metric&appid=${API_Key}`))
-                       
+       
    return response.data
 }
 
 export const fetchHistoryForecast = async ( coordinates, day  ) =>{
    const url = `${ previousURL }${ coordinates.lat }&lon=${ coordinates.lon}&dt=${ calculateDay( day ) }&appid=${API_Key}`
   
-   const response = ( await axios.get( url ) )              
+   const response = ( await axios.get( url ) )   
+              
    return response.data
 }
 

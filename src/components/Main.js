@@ -17,9 +17,9 @@ const Main = () => {
                     <div className={`${ defaultClassname } flex-row flex-wrap justify-content-center align-items-center `} 
                          role={'region'} aria-label={'5 day forecast history'} >
                         {
-                           previousForecast.map( forecast =>{
+                           previousForecast.map( (forecast, ind) =>{
                                
-                               return <PreviousForecast key={forecast.key} { ...forecast } />
+                               return <PreviousForecast key={forecast.key} { ...forecast } test={ind} />
                             })
                         }
                     </div>
