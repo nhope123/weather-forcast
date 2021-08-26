@@ -11,13 +11,12 @@ const Daylight = ( props ) => {
     const time = dayjs.unix( props.data ).format('h:mm a') 
 
     return (
-        <div className={`${ defaultClassname } flex-column align-items-center justify-content-end ${ padding }`}
+        <div className={ `${ defaultClassname } flex-column align-items-center justify-content-end ${ padding }` }
              title={ `${( props.time === 'sunrise')? 'Sunrise' : 'Sunset'} at ${ time }` } >
             {
-                ( props.time === 'sunrise')? <Sunrise className={`${ fontSize } `} style={{color: '#0073e6'}}  />:
-                                             <Sunset className={`${ fontSize } `} style={{color: '#ff5e4b'}}  />
-            }            
-            
+                ( props.time === 'sunrise' )? <Sunrise className={ `${ fontSize } ` } style={{ color: '#0073e6' }}  />:
+                                             <Sunset className={ `${ fontSize }` } style={{ color: '#ff5e4b' }}  />
+            }                        
             <div >{ time }</div>
         </div>
     )

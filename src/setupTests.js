@@ -13,7 +13,7 @@ import { alertOptions } from './App';
 
 const QueryAndContext = ({ children }) => {
     return (
-        <AlertProvider template={AlertTemplate} {...alertOptions}  >
+        <AlertProvider template={ AlertTemplate } { ...alertOptions }  >
             < WeatherQueryClient >
                 <CityContextProvider >
                     { children }
@@ -24,7 +24,7 @@ const QueryAndContext = ({ children }) => {
 }
 
 const customRender = ( ui, options ) =>
-    render( ui, {wrapper: QueryAndContext, ...options} )
+    render( ui, { wrapper: QueryAndContext, ...options } )
 
 export * from '@testing-library/react'
 

@@ -5,7 +5,7 @@ import { InfoCircle } from 'react-bootstrap-icons'
 // options contains all alert given options
 // message is the alert message
 // close is a function that closes the alert
-const AlertTemplate = ({ style, options, message, close }) =>{
+const AlertTemplate = ({ message }) =>{
     return (
         <div className={'.alert'} style={{backgroundColor: 'rgba(255,255,255,0.4)',borderRadius: '10px',padding: '10px 15px',marginTop: '15px'}}>
             <InfoCircle style={{color: 'red',fontSize: '1.5rem', marginRight: '10px'}} />

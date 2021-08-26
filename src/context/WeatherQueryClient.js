@@ -4,11 +4,10 @@ import { ReactQueryDevtools } from 'react-query/devtools'
 
 const queryClient = new QueryClient()
 
-
 const WeatherQueryClient = ( props ) => {
     return (
         <QueryClientProvider client={ queryClient }>
-            <ReactQueryDevtools initialIsOpen={false} />
+            <ReactQueryDevtools initialIsOpen={ false } />
             { props.children }
         </QueryClientProvider >
     )
