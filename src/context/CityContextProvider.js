@@ -1,7 +1,8 @@
 import React, { createContext, useState } from 'react'
 import { useQueries, useQuery } from 'react-query'
-import { fetchCurrentForecast, fetchHistoryForecast, processForecastHistory, processLocalForecast } from '../assets/helper_functions'
+import { processForecastHistory, processLocalForecast } from '../assets/dataProcessing'
 import { useAlert } from 'react-alert'
+import { fetchCurrentForecast, fetchHistoryForecast } from '../assets/dataFetching'
 
 
 export const CityContext = createContext()
